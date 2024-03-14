@@ -11,6 +11,7 @@ const BASE_URL = "https://finnhub.io/api/v1";
 // Function to fetch data from an API endpoint
 async function fetchData(url) {
     const response = await fetch(url);
+    console.log(response)
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
@@ -92,6 +93,7 @@ async function getInsigntSettlement(keyword) {
     data.totalChange = response.totalChange
     return data;
 }
+
 async function getCompanyEarnings(keyword) {
     const data = await fetchData(`${BASE_URL}/stock/earnings?symbol=${keyword}&token=${API_KEY}`);
     return data;
@@ -119,7 +121,7 @@ async function getCompanyNews(keyword, start_date, end_date) {
     return news;
 }
 
-async function BuyStock(ticker,name, price, totalPrice, quantity) {
+async function BuyStock(ticker, name, price, totalPrice, quantity) {
     try {
         // Find or create user
         let user = await userPortfolio.findOne();
@@ -132,7 +134,7 @@ async function BuyStock(ticker,name, price, totalPrice, quantity) {
 
         // Check if user has enough balance to buy
         if (user.totalAmount < totalPrice) {
-            return ({ "code": 400, "mesaage": 'Insufficient balance' });
+            return ({"code": 400, "mesaage": 'Insufficient balance'});
         }
 
         // Check if stock already exists in user's portfolio
@@ -161,7 +163,7 @@ async function BuyStock(ticker,name, price, totalPrice, quantity) {
         // Save updated user data
         await user.save();
 
-        return { message: 'Stock bought successfully' };
+        return {message: 'Stock bought successfully'};
     } catch (error) {
         console.error(error);
         return error;
@@ -178,7 +180,7 @@ async function sellStock(ticker, quantity) {
         const stockIndex = user.stocks.findIndex(stock => stock.ticker === ticker);
 
         if (stockIndex === -1 || user.stocks[stockIndex].totalQuantity < quantity) {
-            return ({ "code": 400, "mesaage": 'Stock not found or insufficient quantity to sell' });
+            return ({"code": 400, "mesaage": 'Stock not found or insufficient quantity to sell'});
         }
 
         // Calculate total price for the stock sale
@@ -198,7 +200,7 @@ async function sellStock(ticker, quantity) {
         // Save updated user data
         await user.save();
 
-        return ({ message: 'Stock sold successfully' });
+        return ({message: 'Stock sold successfully'});
     } catch (error) {
         console.error(error);
         return error;
@@ -215,40 +217,39 @@ async function getAllStocks() {
 }
 
 
-
 async function addTowatchlist(name, symbol) {
     try {
         // Check if the stock already exists in the watchlist
-        const existingStock = await watchlist.findOne({ symbol });
+        const existingStock = await watchlist.findOne({symbol});
 
         if (existingStock) {
             throw new Error('Stock already exists in the watchlist');
         }
 
         // Create a new watchlist entry
-        const newStock = new watchlist({ name, symbol });
+        const newStock = new watchlist({name, symbol});
         await newStock.save();
 
-        return { message: 'Stock added to watchlist successfully' };
+        return {message: 'Stock added to watchlist successfully'};
     } catch (error) {
         throw error;
     }
-};
+}
 
 async function removeFromwatchlist(symbol) {
     try {
         // Find and remove the stock from the watchlist
-        const removedStock = await watchlist.findOneAndDelete({ symbol });
+        const removedStock = await watchlist.findOneAndDelete({symbol});
 
         if (!removedStock) {
             throw new Error('Stock not found in the watchlist');
         }
 
-        return { message: 'Stock removed from watchlist successfully' };
+        return {message: 'Stock removed from watchlist successfully'};
     } catch (error) {
         throw error;
     }
-};
+}
 
 async function getAllwatchlistStocks() {
     try {

@@ -11,10 +11,6 @@ const path = require('path');
 
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'build')));
-// Route to root endpoint
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 // Route to search for a symbol
 app.get("/searchutil/:keyword", async (req, res, next) => {
@@ -74,6 +70,7 @@ app.get("/company-details/:keyword", async (req, res, next) => {
     const keyword = req.params.keyword;
     try {
         const data = await getCompanyDetails(keyword);
+        console.log("errrrr", data)
         res.status(200).json(data);
     } catch (error) {
         next(error);
