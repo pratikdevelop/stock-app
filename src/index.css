@@ -1,13 +1,69 @@
-body {
+.navlink{
+ 
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.749);
+  margin: 0 0.4rem;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  }
+
+.navlink .active {
+  border: .06rem solid white !important;
+  padding: .1rem .9rem !important;
+  border-radius: 15% !important;
+  
+  color: white !important;
+}
+.text-green {
+  color: rgb(56, 239, 56);
+}
+.text-red{
+  color: red;
+}
+ 
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Madimi One", sans-serif;
+  font-weight: 100;
+  font-size: 1rem;
+  font-style: normal;  
+}
+body{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.search-form {
+  padding: 0 12rem !important;
+  margin-top: 6rem !important;
+  margin-bottom: 8rem !important;
+}
+@media (max-width: 1024px) {
+  .search-form{
+    padding: 1rem !important;
+  }  
+}
+.btn-twitter {
+  color: #55acee;
+  outline: none;
+  box-shadow: none;
+  /* background-color: #55acee; */
+  /* border-color: rgba(0,0,0,0.2); */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+div.modal-body h2 {
+  line-height: 25px;
+}
+
+div.modal-header button {
+  outline: none;
 }
