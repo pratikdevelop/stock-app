@@ -1,0 +1,40 @@
+<mat-card class="create-account-card">
+    <mat-card-header>
+        <mat-card-title class="text-center text-2xl font-semibold">Create Account</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="onSubmit()" #createAccountForm="ngForm">
+            <!-- Full Name Field -->
+        
+            <!-- Email Field -->
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" name="email" [(ngModel)]="account.email" required email />
+                <mat-icon matPrefix>mail</mat-icon>
+                <mat-error *ngIf="createAccountForm.submitted && !account.email">Please enter a valid email</mat-error>
+            </mat-form-field>
+
+            <!-- Password Field -->
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" name="password" [(ngModel)]="account.password" required minlength="6" />
+                <mat-icon matPrefix>lock</mat-icon>
+                <mat-error *ngIf="createAccountForm.submitted && !account.password">Password is required (min 6
+                    characters)</mat-error>
+            </mat-form-field>
+
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button mat-raised-button color="primary" type="submit" [disabled]="createAccountForm.invalid">
+                    login now
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="text-center">
+            <p> Need to create an account? <a routerLink="/signup">Click here</a></p>
+        </div>
+    </mat-card-footer>
+</mat-card>

@@ -1,0 +1,4 @@
+.mdc-text-field--filled:not(.mdc-text-field--disabled){  
+    border: 0 !important; 
+    background-color: white !important;
+}
