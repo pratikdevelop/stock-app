@@ -1,0 +1,19 @@
+.mat-card {
+  @apply bg-white shadow-md rounded-lg;
+}
+
+.mat-header-cell, .mat-cell {
+  @apply p-4 text-sm;
+}
+
+.mat-header-row {
+  @apply bg-gray-200 text-gray-700;
+}
+
+.mat-row {
+  @apply bg-gray-50 hover:bg-gray-100;
+}
+
+.mat-table {
+  @apply w-full table-auto;
+}

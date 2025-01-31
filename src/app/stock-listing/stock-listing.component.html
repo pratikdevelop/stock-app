@@ -1,0 +1,39 @@
+<div class="container mx-auto p-4">
+    <mat-card class="mb-4">
+        <mat-card-header>
+            <mat-card-title class="text-2xl font-semibold text-center">Stock Listings</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <mat-table [dataSource]="stocks" class="mat-elevation-z8">
+                <ng-container matColumnDef="symbol">
+                    <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                    <mat-cell *matCellDef="let stock"> {{ stock.symbol }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="current_price">
+                    <mat-header-cell *matHeaderCellDef> Current Price </mat-header-cell>
+                    <mat-cell *matCellDef="let stock"> ${{ stock.current_price }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="market_cap">
+                    <mat-header-cell *matHeaderCellDef> Market Cap </mat-header-cell>
+                    <mat-cell *matCellDef="let stock"> {{ stock.market_cap }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="week_high">
+                    <mat-header-cell *matHeaderCellDef> 52 Week High </mat-header-cell>
+                    <mat-cell *matCellDef="let stock"> ${{ stock.week_high }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="week_low">
+                    <mat-header-cell *matHeaderCellDef> 52 Week Low </mat-header-cell>
+                    <mat-cell *matCellDef="let stock"> ${{ stock.week_low }} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </mat-card-content>
+    </mat-card>
+</div>

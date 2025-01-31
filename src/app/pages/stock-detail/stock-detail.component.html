@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-between align-items-start flex-auto position-relative mt-5">
+    <div class="d-flex flex-column">
+        <h4>{{ companyDetails.ticker }}
+            <span class="ml-5">
+                <button *ngIf="!stockExists" (click)="updateWatchlist('add')"
+                    style="border: 0; outline: 0; background: none;">
+                    <mat-icon>
+                        star
+                    </mat-icon>
+                </button>
+                <button *ngIf="stockExists" (click)="updateWatchlist('remove')"
+                    style="border: 0; outline: 0; background: none; color: yellow;">
+                    <mat-icon>
+                        star-fill
+                    </mat-icon>
+                </button>
+            </span>
+        </h4>
+        <span>{{ companyDetails.name }}</span>
+        <p class="fs-6">{{ companyDetails.exchange }}</p>
+        <div class="d-flex flex-row justify-content-between mt-2 align-items-center mx-5">
+            <button type="button" (click)="handleShowModal('buy')" class="btn btn-success">Buy</button>
+            <button *ngIf="stockExistsInPortfolio" type="button" (click)="handleShowModal('sell')"
+                class="btn btn-danger">Sell</button>
+        </div>
+    </div>
+    <div class="d-flex flex-column">
+        <img [src]="companyDetails.logo" width="60" height="60" />
+    </div>
+    <div class="d-flex flex-column align-items-center">
+        <h4 [ngClass]="latestPrice.d > 0 ? 'text-green' : 'text-red'">{{ latestPrice.o }}</h4>
+        <span [ngClass]="latestPrice.d > 0 ? 'text-green' : 'text-red'">
+            <!-- <BsCaretUpFill *ngIf="latestPrice.d > 0" />
+            <BsCaretDownFill *ngIf="latestPrice.d <= 0" /> -->
+            <span>{{ latestPrice.d }}</span> ({{ latestPrice.dp?.toFixed(2) }}%)
+        </span>
+        <span>{{ latestPrice.t | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+    </div>
+</div>
+
+<!-- <app-stock-trade *ngIf="showModal" [show]="showModal" [modeltype]="showModaltype"
+    (handleClose)="handleCloseModal($event.quantity, $event.totalPrice, $event.price)" [title]="companyDetails.ticker"
+    [price]="latestPrice.o">
+</app-stock-trade> -->
+
+<!-- <app-alert *ngIf="showAlert" [message]="showAlert"></app-alert> -->

@@ -1,6 +1,5 @@
-<div
-  class="flex flex-col w-full relative h-full overlow-y-auto overflow-x-hidden"
->
+<div class="flex flex-col w-full relative h-[100vh] overflow-y-auto overflow-x-hidden">
+
   <nav
     aria-label="Global"
     class="flex flex-col sm:flex-row sm:items-center justify-between w-full space-x-6 text-primary-foreground bg-slate-800 p-3"
@@ -9,31 +8,25 @@
       <a
         routerLink="/"
         class="mat-button text-white font-semibold text-xl md:text-2xl"
-        >Stock  analysis</a
+        >MarketLytics Minds</a
       >
     </div>
     
     <div class="flex sm:items-center space-x-6 sm:w-9/12 sm:justify-end">
-    
-
-      <mat-form-field appearance="fill" class="w-full border-0">
-        <input matInput [formControl]="websiteFilterCtrl" class="bg-white border-0 h-16" placeholder="Search Folders" [matAutocomplete]="folderAuto"
-           />
-        <mat-autocomplete #folderAuto="matAutocomplete" (optionSelected)="onFolderSelected($event)">
-          <ng-container *ngIf="!isLoading;">
-            <ng-container *ngIf="websites.length > 0;">
-              <mat-option *ngFor="let website of websites" [value]="website.symbol">
-                {{website.description}} {{website.symbol}}
-              </mat-option>
-            </ng-container>
-            
+      <input type="search" [formControl]="websiteFilterCtrl" class="bg-white border-0 w-full px-6 h-12 rounded-full" placeholder="Search Folders" [matAutocomplete]="folderAuto" />
+      <mat-autocomplete #folderAuto="matAutocomplete" (optionSelected)="onFolderSelected($event)">
+        <ng-container *ngIf="!isLoading;">
+          <ng-container *ngIf="websites.length > 0;">
+            <mat-option *ngFor="let website of websites" [value]="website.symbol">
+              {{website.description}} {{website.symbol}}
+            </mat-option>
           </ng-container>
-        </mat-autocomplete>
-      </mat-form-field>
-  
-      <a routerLink="/market-news" mat-raised-button class="text-sm px-4">
-        Market News</a
-      >
+        </ng-container>
+      </mat-autocomplete>
+      <a routerLink="/stocks" mat-raised-button>
+        Stocks
+      </a>
+      <a routerLink="/market-news" mat-raised-button class="text-sm px-4">Market News</a>
       <a routerLink="/login" mat-raised-button class="text-sm">Login</a>
       <a routerLink="/signup" mat-raised-button class="text-sm">Signup</a>
 
@@ -43,45 +36,61 @@
         </button>
 
         <mat-menu #userMenu="matMenu">
-          <a routerLink="/watchlist" mat-menu-item class="text-white"
-            >Watchlist</a
-          >
-          <a routerLink="/portfolio" mat-menu-item class="text-white"
-            >Portfolio</a
-          >
+          <a routerLink="/watchlist" mat-menu-item class="text-white">Watchlist</a>
+          <a routerLink="/portfolio" mat-menu-item class="text-white">Portfolio</a>
           <button mat-menu-item routerLink="/profile">Profile</button>
           <button mat-menu-item routerLink="/settings">Settings</button>
           <button mat-menu-item routerLink="/logout">Logout</button>
         </mat-menu>
       </div>
+
       <div class="block sm:hidden">
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="menu"
-          class="text-white"
-          (click)="toggleMobileMenu()"
-        >
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white" (click)="toggleMobileMenu()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
     </div>
   </nav>
+
   <mat-menu #menu="matMenu">
-    <a routerLink="/watchlist" mat-menu-item class="text-white py-2 px-3"
-      >Watchlist</a
-    >
-
-    <a routerLink="/portfolio" mat-menu-item class="text-white py-2 px-3"
-      >Portfolio</a
-    >
-
-    <a routerLink="/market-news" mat-menu-item class="text-white py-2 px-3"
-      >Market News</a
-    >
-
+    <a routerLink="/watchlist" mat-menu-item class="text-white py-2 px-3">Watchlist</a>
+    <a routerLink="/portfolio" mat-menu-item class="text-white py-2 px-3">Portfolio</a>
+    <a routerLink="/market-news" mat-menu-item class="text-white py-2 px-3">Market News</a>
     <a routerLink="/login" mat-menu-item class="text-white py-2 px-3">Login</a>
     <a routerLink="/signup" mat-menu-item class="text-white">Create Account</a>
   </mat-menu>
 
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>
+<div class="w-full inset-0 bg-dark text-white py-6 bg-slate-900">
+  <div class="text-center">
+    <h5 class="mb-2 text-xl">Powered by <strong>MarketLytics Minds</strong></h5>
+    <p class="mb-4 text-sm">Your trusted source for in-depth stock market analysis and insights.</p>
+
+    <div class="flex justify-center mb-4 space-x-6">
+      <a href="/about" class="text-white hover:text-gray-300 text-sm">About Us</a>
+      <a href="/services" class="text-white hover:text-gray-300 text-sm">Services</a>
+      <a href="/contact" class="text-white hover:text-gray-300 text-sm">Contact</a>
+      <a href="/privacy" class="text-white hover:text-gray-300 text-sm">Privacy Policy</a>
+      <a href="/terms" class="text-white hover:text-gray-300 text-sm">Terms of Service</a>
+    </div>
+
+    <div class="mb-4">
+      <a href="https://twitter.com" class="text-white hover:text-gray-300 mx-2" target="_blank">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://facebook.com" class="text-white hover:text-gray-300 mx-2" target="_blank">
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a href="https://linkedin.com" class="text-white hover:text-gray-300 mx-2" target="_blank">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com" class="text-white hover:text-gray-300 mx-2" target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+    <p class="mb-2 text-sm">&copy; {{getDate()}} MarketLytics Minds. All rights reserved.</p>
+    <p class="text-xs">Developed by <strong>Siqi Liang</strong></p>
+  </div>
+</div>
 </div>
